@@ -1,29 +1,29 @@
 {
     "WbaVxd": {
         "status": "Running",
-        "log_time": "2024-11-27 05:52:32",
+        "log_time": "2024-11-27 05:58:55",
         "log_step": "Step 10: Run WRF using 2 domains",
         "model_start_date": "2010-03-26 00:00:00",
         "model_end_date": "2010-04-09 00:00:00",
-        "elapsed_time_hours": 283.00444444444446,
-        "current_time_step": "2010-04-06 19:00:16",
+        "elapsed_time_hours": 287.06666666666666,
+        "current_time_step": "2010-04-06 23:04:00",
         "average_elapsed_time_per_domain": {
-            "2": 0.1190426227306977,
-            "1": 0.6113247326266216
+            "2": 0.11905704095061014,
+            "1": 0.6117209305620088
         },
         "slow_domains": []
     },
     "YtTGJd": {
         "status": "Running",
-        "log_time": "2024-11-27 05:52:48",
+        "log_time": "2024-11-27 05:59:13",
         "log_step": "Step 10: Run WRF using 2 domains",
         "model_start_date": "2010-03-19 00:00:00",
         "model_end_date": "2010-04-02 00:00:00",
-        "elapsed_time_hours": 247.44666666666666,
-        "current_time_step": "2010-03-29 07:26:48",
+        "elapsed_time_hours": 250.96666666666667,
+        "current_time_step": "2010-03-29 10:58:00",
         "average_elapsed_time_per_domain": {
-            "2": 0.13565637668274244,
-            "1": 0.6989954285098484
+            "2": 0.13579774587151933,
+            "1": 0.6994573847788564
         },
         "slow_domains": []
     }
