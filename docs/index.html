@@ -35,7 +35,7 @@
         // Fetch and display the JSON metrics
         async function loadMetrics() {
             try {
-                const response = await fetch('job_metrics.json');
+                const response = await fetch('/job_metrics.json');
                 const data = await response.json();
                 const dashboard = document.getElementById('dashboard');
                 let html = '<table><thead><tr>' +
