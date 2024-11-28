@@ -47,6 +47,10 @@ def display_jobs(jobs, title):
         df = pd.DataFrame(rows)
         st.dataframe(df, use_container_width=True)
 
+# Add a refresh button
+if st.button("Refresh Data"):
+    st.experimental_rerun()
+
 # Load jobs from Firestore
 running_jobs = load_jobs("runs")
 completed_jobs = load_jobs("completed_runs")
