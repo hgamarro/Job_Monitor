@@ -74,7 +74,7 @@ def display_running_jobs_with_text_progress(jobs):
         log_time = format_time(data.get("log_time"))
         log_step = data.get("log_step", "Unknown")
         average_times = ", ".join(
-            [f"Domain {d}: {t:.2f}s" for d, t in data.get("average_elapsed_time_per_domain", {}).items()]
+            [f"D{d}: {t:.2f}s " for d, t in data.get("average_elapsed_time_per_domain", {}).items()]
         )
         slow_domains = ", ".join(data.get("slow_domains", [])) or "None"
 
