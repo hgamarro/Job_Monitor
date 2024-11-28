@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from google.cloud import firestore
 from google.oauth2 import service_account
+from google.cloud.firestore_v1._helpers import DatetimeWithNanoseconds
 import json
 
 key_dict = json.loads(st.secrets["textkey"])
@@ -16,6 +17,11 @@ def load_jobs(collection_name):
     docs = collection_ref.stream()
     jobs = {doc.id: doc.to_dict() for doc in docs}
     return jobs
+
+def format_time(datetime_value):
+    if isinstance(datetime_value, (datetime, DatetimeWithNanoseconds)):
+        return datetime_value.strftime("%Y-%m-%d %H:%M")
+    return "Unknown"  # Fallback for invalid or missing times
 
 # Helper function to display jobs using a DataFrame
 def display_jobs(jobs, title):
@@ -32,13 +38,13 @@ def display_jobs(jobs, title):
             row = {
                 "Job ID": job_id,
                 "Status": data.get("status", "Unknown"),
-                "Log Time": data.get("log_time", "Unknown"),
-                "Log Step": data.get("log_step", "Unknown"),
-                "Model Start": data.get("model_start_date", "Unknown"),
-                "Model End": data.get("model_end_date", "Unknown"),
-                "Elapsed Time (Hours)": data.get("elapsed_time_hours", "Unknown"),
-                "Current Time Step": data.get("current_time_step", "Unknown"),
-                "Average Time Per Domain": average_times,
+                "Log Time": format_time(data.get("log_time", "Unknown")),
+                "Log Step": data.get("log_step", "Unknown")[:8],
+                "Model Start": format_time(data.get("model_start_date", "Unknown")),
+                "Model End": format_time(data.get("model_end_date", "Unknown")),
+                "Model Time Step": format_time(data.get("current_time_step", "Unknown")),
+                "Elapsed Time": data.get("elapsed_time_hours", "Unknown"),
+                "Average Time": average_times,
                 "Slow Domains": slow_domains,
             }
             rows.append(row)
