@@ -109,8 +109,8 @@ def display_jobs_complete(jobs, title):
         rows = []
         for job_id, data in jobs.items():
             average_times = ", ".join(
-                [f"Domain {d}: {t:.2f}s" for d, t in data.get("average_elapsed_time_per_domain", {}).items()]
-            )
+            [f"D{d}: {t:.2f}s " for d, t in data.get("average_elapsed_time_per_domain", {}).items()]
+        )
             slow_domains = ", ".join(data.get("slow_domains", [])) or "None"
             row = {
                 "Job ID": job_id,
