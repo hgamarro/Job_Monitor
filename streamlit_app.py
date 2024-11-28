@@ -54,6 +54,33 @@ def display_jobs(jobs, title):
         df = pd.DataFrame(rows)
         st.dataframe(df, use_container_width=True)
 
+def display_jobs_complete(jobs, title):
+    st.write(f"**{title}:**")
+    if not jobs:
+        st.info(f"No {title.lower()} available.")
+    else:
+        rows = []
+        for job_id, data in jobs.items():
+            average_times = ", ".join(
+                [f"Domain {d}: {t:.2f}s" for d, t in data.get("average_elapsed_time_per_domain", {}).items()]
+            )
+            slow_domains = ", ".join(data.get("slow_domains", [])) or "None"
+            row = {
+                "Job ID": job_id,
+                "Status": data.get("status", "Unknown"),
+                "Log Time": format_time(data.get("log_time", "Unknown")),
+                "Model Start": format_time(data.get("model_start_date", "Unknown")),
+                "Model End": format_time(data.get("model_end_date", "Unknown")),
+                "Elapsed Time": data.get("elapsed_time_hours", "Unknown"),
+                "Average Time": average_times,
+            }
+            rows.append(row)
+
+        # Create a DataFrame and display it using Streamlit
+        df = pd.DataFrame(rows)
+        st.dataframe(df, use_container_width=True)
+
+
 # Add a refresh button
 if st.button("Refresh Data"):
     st.rerun()
@@ -70,5 +97,5 @@ with tab1:
     display_jobs(running_jobs, "Running Jobs")
 
 with tab2:
-    display_jobs(completed_jobs, "Completed Runs")
+    display_jobs_complete(completed_jobs, "Completed Runs")
 
