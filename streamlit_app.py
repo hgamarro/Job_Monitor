@@ -82,12 +82,17 @@ def display_running_jobs_with_text_progress(jobs):
         row = {
             "Job ID": job_id,
             "Status": data.get("status", "Unknown"),
-            "Log Time": log_time,
-            "Log Step": log_step,
-            "Average Time Per Domain": average_times,
+            "Log Time": format_time(data.get("log_time", "Unknown")),
+            "Log Step": data.get("log_step", "Unknown")[:8],
+            "Model Start": format_time(data.get("model_start_date", "Unknown")),
+            "Model End": format_time(data.get("model_end_date", "Unknown")),
+            "Model Time Step": format_time(data.get("current_time_step", "Unknown")),
+            "Elapsed Time": data.get("elapsed_time_hours", "Unknown"),
+            "Average Time": average_times,
             "Slow Domains": slow_domains,
             "Progress": progress_bar,
         }
+        
         rows.append(row)
 
     # Create a DataFrame for job details
