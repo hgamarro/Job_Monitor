@@ -49,7 +49,7 @@ def display_jobs(jobs, title):
 
 # Add a refresh button
 if st.button("Refresh Data"):
-    st.experimental_rerun()
+    st.rerun()
 
 # Load jobs from Firestore
 running_jobs = load_jobs("runs")
